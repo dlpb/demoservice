@@ -1,0 +1,283 @@
+.body {
+
+	background: url('/assets/images/white_carbon.png');
+}
+
+.footer {
+    margin-top:5em;
+}
+
+:active, :focus {
+	outline: 0;
+}
+
+.button {
+	font-family: sans-serif;
+	text-shadow: 0px 1px 1px rgba(250,250,250,0.1);
+	font-size:32pt;
+	display: block;
+	position: relative;
+	text-decoration: none;
+	box-shadow: 0px 3px 0px 0px rgb(34,34,34), /* 1st Shadow */
+                0px 7px 10px 0px rgb(17,17,17), /* 1nd Shadow */
+                inset 0px 1px 1px 0px rgba(250, 250, 250, .2), /* 3rd Shadow */
+                inset 0px -12px 35px 0px rgba(0, 0, 0, .5); /* 4th Shadow */
+    width: 70px;
+    height: 70px;
+    border: 0;
+    border-radius: 35px;
+    text-align: center;
+    line-height: 79px;
+
+    margin: 0 auto;
+
+    transition: color 150ms, text-shadow 150ms;
+    -o-transition: color 150ms, text-shadow 150ms;
+    -moz-transition: color 150ms, text-shadow 150ms;
+    -webkit-transition: color 150ms, text-shadow 150ms;
+}
+
+.button:before {
+	content: "";
+    width: 80px;
+    height: 80px;
+    display: block;
+    z-index: -2;
+    position: absolute;
+    left: -5px;
+    top: -2px;
+    border-radius: 40px;
+    box-shadow: 0px 1px 0px 0px rgba(250,250,250,0.1),
+                inset 0px 1px 2px rgba(0, 0, 0, 0.5)
+}
+
+.button:active {
+    box-shadow: 0px 0px 0px 0px rgb(34,34,34), /* 1st Shadow */
+                0px 3px 7px 0px rgb(17,17,17), /* 2nd Shadow */
+                inset 0px 1px 1px 0px rgba(250, 250, 250, .2), /* 3rd Shadow */
+                inset 0px -10px 35px 5px rgba(0, 0, 0, .5); /* 4th Shadow */
+    top: 3px;
+}
+
+.button:target {
+    box-shadow: 0px 0px 0px 0px rgb(34,34,34),
+                0px 3px 7px 0px rgb(17,17,17),
+                inset 0px 1px 1px 0px rgba(250, 250, 250, .2),
+                inset 0px -10px 35px 5px rgba(0, 0, 0, .5);
+    background-color: rgb(83,87,93);
+    top: 3px;
+    color: #fff;
+    text-shadow: 0px 0px 3px rgb(250,250,250);
+}
+
+.button:active:before, .button:target:before {
+    top: -5px;
+    background-color: rgb(26,27,29);
+    box-shadow: 0px 1px 0px 0px rgba(250,250,250,0.1),
+                inset 0px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/**
+red coloured button
+*/
+.red {
+	background-color: rgb(220,10,20);
+	color:#cdcdcd;
+}
+
+.red:before {
+	background-color: rgb(160,27,29);
+}
+
+.red:active {
+	color:#efefef;
+    background-color: rgb(220,40,45);
+}
+.red:active:before, .red:target:before {
+	    background-color: rgb(160,27,29);
+}
+
+/**
+black coloured button
+*/
+.black {
+	background-color: rgb(10,10,20);
+	color:#aaa;
+}
+
+.black:before {
+	background-color: rgb(22,27,29);
+}
+
+.black:active {
+	color:#efefef;
+    background-color: rgb(40,40,45);
+}
+.black:active:before, .black:target:before {
+	background-color: rgb(22,27,29);
+}
+
+/**
+white coloured button
+*/
+.white {
+	background-color: rgb(250,252,255);
+	color:#555;
+}
+
+.white:before {
+	background-color: rgb(220,227,229);
+}
+
+.white:active {
+	color:#fff;
+    background-color: rgb(250,252,255);
+}
+.white:active:before, .white:target:before {
+	background-color: rgb(220,227,229);
+}
+
+/**
+yellow coloured button
+*/
+.yellow {
+	background-color: rgb(255,255,20);
+	color:#9a9a9a;
+}
+
+.yellow:before {
+	background-color: rgb(160,160,20);
+}
+
+.yellow:active {
+	color:#fff;
+    background-color: rgb(255,255,20);
+}
+.yellow:active:before, .yellow:target:before {
+	    background-color: rgb(160,160,29);
+}
+
+/**
+green coloured button
+*/
+.green {
+	background-color: rgb(10,220,20);
+	color:#cdcdcd;
+}
+
+.green:before {
+	background-color: rgb(27,160,29);
+}
+
+.green:active {
+	color:#efefef;
+    background-color: rgb(40,220,45);
+}
+.green:active:before, .green:target:before {
+	background-color: rgb(27,160,29);
+}
+
+/**
+css div stuff for respinsive layout
+*/
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+
+	width:50%;
+	min-width: 320px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+
+/*  GRID OF FIVE  */
+.span_1_of_5 {
+	width:18.5%;
+	min-width:80px;
+	min-height: 80px;
+}
+.span_5_of_5 {
+	width:100%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 768px) {
+	.col {
+		margin: 1% 0 1% 0%;
+		height:50px;
+	}
+
+	.body {
+		/*margin-top:150px;;*/
+	}
+
+	.span_1_of_5 {
+		width: 100%;
+		height: 50px;
+		min-height: 52px;
+		margin: 0;
+	}
+	.button:before{
+		height:50px;
+	}
+	.button {
+		display: block;
+		border-radius:0px;
+		width:100%;
+	    height: 50px;
+		text-shadow: none;
+		font-size:32pt;
+		position: relative;
+		text-decoration: none;
+		box-shadow: none;
+	    border: 0;
+	    text-align: center;
+	    line-height: 50px;
+
+	    margin: 0 auto;
+	
+		-webkit-tap-highlight-color: #aa0000; 
+	}
+
+	.btn {
+		width:100%;
+		min-height:50px;
+	}
+}
+
+
+h1 {
+	font-family: sans-serif;
+	text-align:center;
+	color: #888;
+	text-shadow: 0px -1px 0px rgba(0,0,0,.5); /* 50% black coming from the top */
+}
+p {
+	font-family: sans-serif;
+	text-align:center;
+	font-size: smaller;
+	color:#555;
+}

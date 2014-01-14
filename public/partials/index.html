@@ -1,0 +1,52 @@
+
+<div class="body" ng-init="checkProject()">
+
+    <div class="section group">
+        <div class="col span_5_of_5">
+            <h1 class="hidden-xs">Push a button</h1>
+
+            <p>{{msg}}</p>
+        </div>
+    </div>
+
+    <div class="section group">
+
+        <div class="col span_1_of_5">
+            <button id="button1" class="button black" ng-click="vote(1)">
+                <span class="buttonText">1</span>
+            </button>
+        </div>
+        <div class="col span_1_of_5">
+            <button id="button2" class="button red" ng-click="vote(2)">
+                <span class="buttonText">2</span>
+            </button>
+        </div>
+        <div class="col span_1_of_5">
+            <button id="button3" class="button yellow" ng-click="vote(3)">
+                <span class="buttonText">3</span>
+            </button>
+        </div>
+        <div class="col span_1_of_5">
+            <button id="button4" class="button white" ng-click="vote(4)">
+                <span class="buttonText">4</span>
+            </button>
+        </div>
+        <div class="col span_1_of_5">
+            <button id="button5" class="button green" ng-click="vote(5)">
+                <span class="buttonText">5</span>
+            </button>
+        </div>
+    </div>
+
+
+</div>
+<div class="footer">
+    <div class="section group">
+        <div class="col span_5_of_5">
+            <p>
+                <a class="" ng-click="gotoChoose()">Choose another project</a>
+            </p>
+        </div>
+    </div>
+
+</div>

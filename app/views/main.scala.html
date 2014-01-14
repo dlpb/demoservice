@@ -1,0 +1,52 @@
+@(title: String)
+<!DOCTYPE html>
+<html ng-app="demoservice" xmlns="http://www.w3.org/1999/html">
+    <head>
+        <title>@title</title>
+
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/reset.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/jquery-ui.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap.min.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap-theme.min.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/buttonstyle.css")">
+
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+
+        @common.JavaScript.jQueryJs
+
+        @common.JavaScript.bootstrapJs
+        @common.JavaScript.angularJs
+
+        @common.JavaScript.angularAppJs
+
+    </head>
+    <body>
+        @common.UiFragments.navBar
+        <script>
+            $('#shownav').click(function() {
+                $('#navnorm').toggleClass('hidden-xs');
+
+            if ($('#shownav').text() == "Menu")
+               $('#shownav').text("Hide Menu")
+            else
+               $('#shownav').text("Menu");
+
+            });
+            $('#navnorm li').click(function(){
+                $('#navnorm').toggleClass('hidden-xs');
+                $('#shownav').text("Menu");
+            });
+
+        </script>
+        <div id="container" style="z-index: auto;"  class="" ng-controller="voteCtrl">
+            <div class="bigrow" >
+                <div ng-view />
+            </div>
+        </div>
+
+
+    </body>
+</html>

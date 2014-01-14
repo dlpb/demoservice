@@ -1,0 +1,14 @@
+<div ng-init="loadProjects()">
+    <div class="body">
+
+        <div class="section group">
+            <div class="col span_5_of_5">
+                <h1>Select Project</h1>
+                <p>These projects are active today</p>
+                <div class=btn-group-vertical">
+                    <button ng-repeat="project in projects" ng-click="setProject($index)" class="btn btn-default btn-block">{{project.name}} ({{project.timeStart}} - {{project.timeEnd}})</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
