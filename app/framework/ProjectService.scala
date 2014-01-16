@@ -3,50 +3,45 @@ package framework
 /**
  * Created by Daniel on 01/01/2014.
  */
-import com.google.gson.Gson
-import java.io.{File, PrintWriter, FileReader}
-import com.google.gson.reflect.TypeToken
-import java.lang.reflect.Type
-import java.util.{Calendar, Date}
+import java.util.Date
 import org.joda.time.DateTime
+import com.foursquare.rogue.LiftRogue._
+import com.mongodb.WriteConcern
 
 object ProjectService {
 
-  val projects = scala.collection.mutable.Map[String, Project]()
 
   def add(project: Project) = {
-    projects(project.name) = project
+    project.save(WriteConcern.FSYNC_SAFE)
+    println(project)
   }
 
   def get: List[Project] = {
-   projects.values.toList
+   Project.findAll
   }
 
-  def get(name: String) = {
-    projects get name getOrElse(Project("NO_PROJECT","NO_PROJECT",0,0))
+  def get(name: String): List[Project] = {
+    Project.where(_.name eqs name).fetch
   }
 
   def activeProjects: List[Project] = {
-    println("projects", projects)
-    println("morning", morning)
+    println("morn ", morning)
     println("night", night)
-    projects.values.toList filter(p => {
-      println("date", new Date(p.startTime))
-       p.startTime >= morning && p.endTime <= night
-    })
-      // projects.values.tList
-
+    get foreach { x => println("start", x.starttime.get, new Date(x.starttime.get)); println("end  ", x.endtime.get)}
+    val x = Project.where(_.starttime gte morning).and(_.endtime lte night).fetch
+    println(x)
+    x
   }
 
   def remove(project: Project) = {
-    projects remove project.name
+    project.delete_!
   }
 
   def modify(project: Project) = {
     add(project)
   }
 
-  def clear() = projects.clear()
+  def clear() = Project.bulkDelete_!!!
 
   def morning = {
 

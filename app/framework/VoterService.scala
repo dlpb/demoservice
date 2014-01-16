@@ -1,16 +1,20 @@
 package framework
 
+
+import com.foursquare.rogue.LiftRogue._
+import com.mongodb.WriteConcern
+
 /**
  * Created by Daniel on 02/01/2014.
  */
 object VoterService {
 
-  private val votes = scala.collection.mutable.Map[String, List[Int]]()
 
   def vote(project: String, vote:Int) = {
-    val results = get(project)
-    votes.put(project, vote :: results)
+    Vote.createRecord.projectname(project).vote(vote).save(WriteConcern.FSYNC_SAFE)
   }
 
-  def get(project: String) = votes.getOrElse(project, List())
+  def get(project: String) : List[Int] = {
+    Vote.where(_.projectname eqs project).fetch.map(v => v.vote.get)
+  }
 }
