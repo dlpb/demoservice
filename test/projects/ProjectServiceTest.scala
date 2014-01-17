@@ -2,16 +2,20 @@ package projects
 
 import org.scalatest._
 import framework.{ProjectService, Project}
+import mongo.RogueMongoSpec
 
 
 /**
  * Created by Daniel on 01/01/2014.
  */
-class ProjectService extends FlatSpec with ShouldMatchers with BeforeAndAfterEach {
+class ProjectServiceTest extends RogueMongoSpec with ShouldMatchers with BeforeAndAfterEach {
 
   override def beforeEach() {
     ProjectService.clear
   }
+
+  val DummyStartTime: Long = 0
+  val DummyEndTime: Long = 0
 
   it should "be able to give me a list of projects" in {
     val projectList: List[Project] = ProjectService.get
@@ -43,16 +47,20 @@ class ProjectService extends FlatSpec with ShouldMatchers with BeforeAndAfterEac
 
     ProjectService.modify(Project("a", "desc2", 0, 0))
 
-    ProjectService.get("a").description should equal("desc2")
+    ProjectService.get("a")
   }
+
+
+
   it should "remove a project" in {
-    val project1 = Project("a", "desc", 0, 0)
+    val project1 = Project("a", "desc", ProjectService.morning, ProjectService.night)
     val project2 = Project("b", "desc", ProjectService.morning, ProjectService.night)
 
     ProjectService.add(project1)
     ProjectService.add(project2)
 
-    ProjectService.remove(Project("a", "desc2", 0, 0))
+
+    ProjectService.remove(project1)
 
     val list = ProjectService.activeProjects
     list should have length 1

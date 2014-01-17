@@ -25,9 +25,9 @@ object ProjectService {
   }
 
   def activeProjects: List[Project] = {
-    println("morn ", morning)
-    println("night", night)
-    get foreach { x => println("start", x.starttime.get, new Date(x.starttime.get)); println("end  ", x.endtime.get)}
+    print("morn ", new Date(morning))
+    println("night", new Date(night))
+    get foreach { x => print("start", new Date(x.starttime.get)); println("end  ", new Date(x.endtime.get))}
     val x = Project.where(_.starttime gte morning).and(_.endtime lte night).fetch
     println(x)
     x
@@ -45,12 +45,12 @@ object ProjectService {
 
   def morning = {
 
-    val dt = new DateTime().withHourOfDay(0).withMinuteOfHour(0).withSecondOfMinute(0)
+    val dt = new DateTime().withHourOfDay(0).withMinuteOfHour(0).withSecondOfMinute(0).withMillisOfSecond(0)
     dt.getMillis
   }
 
   def night = {
-    val dt = new DateTime().withHourOfDay(23).withMinuteOfHour(59).withSecondOfMinute(59)
+    val dt = new DateTime().withHourOfDay(23).withMinuteOfHour(59).withSecondOfMinute(59).withMillisOfSecond(0)
     dt.getMillis
   }
 }
