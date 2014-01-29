@@ -3,7 +3,7 @@
 function AdminCtrl($scope, $resource, $window, times) {
 
 
-    $scope.projectTemplate = function(){
+    $scope.eventTemplate = function(){
         return {
             name: "",
             desc : "",
@@ -14,24 +14,22 @@ function AdminCtrl($scope, $resource, $window, times) {
         }
     };
 
-    $scope.index;
-    $scope.allProjs = [];
-    $scope.currentlySelectedProject = $scope.projectTemplate();
+    $scope.allEvents = [];
+    $scope.currentlySelectedEvent = $scope.eventTemplate();
 
-    $scope.allProjects = $resource('/api/v1/events', {},
+    $scope.Events = $resource('/api/v1/events', {},
         { get: { method: 'GET', isArray: true } }
     );
 
-    $scope.addProject = $resource('/api/v1/events/add', {},
+    $scope.AddEvent = $resource('/api/v1/events/add', {},
         { post: { method: 'POST', isArray: false } }
     );
 
     $scope.loadEvents = function(){
 
-        $scope.allProjects.get({},
+        $scope.Events.get({},
             function(data){
-                $scope.allProjs = data;
-                times.add($scope.allProjs);
+                $scope.allEvents = data;
             },
             function(err){
                 console.log(err);
@@ -40,19 +38,20 @@ function AdminCtrl($scope, $resource, $window, times) {
     };
 
     $scope.saveEvent = function(vote) {
-        $scope.addProject.post(
+        $scope.AddEvent.post(
         {
-            name: $scope.currentlySelectedProject.name,
-            desc: $scope.currentlySelectedProject.desc,
-            dateStart: $scope.currentlySelectedProject.dateStart,
-            timeStart: $scope.currentlySelectedProject.timeStart,
-            dateEnd: $scope.currentlySelectedProject.dateEnd,
-            timeEnd: $scope.currentlySelectedProject.timeEnd,
+            name: $scope.currentlySelectedEvent.name,
+            desc: $scope.currentlySelectedEvent.desc,
+            dateStart: $scope.currentlySelectedEvent.dateStart,
+            timeStart: $scope.currentlySelectedEvent.timeStart,
+            dateEnd: $scope.currentlySelectedEvent.dateEnd,
+            timeEnd: $scope.currentlySelectedEvent.timeEnd,
             active: true
         },
         function (data) {
             $scope.msg = data;
             $('#editModal').modal('hide');
+            $scope.loadEvents();
 
         },
         function (error) {
@@ -61,17 +60,11 @@ function AdminCtrl($scope, $resource, $window, times) {
 
     };
 
-    $scope.editProject = function(index){
-        if(index >= 0){
-            $scope.index = true;
-        }
-        else{
-            $scope.index = false;
-        }
+    $scope.editEvent = function(index){
 
         $('#editModal').modal('show');
 
-        $scope.currentlySelectedProject = $scope.allProjs[index];
+        $scope.currentlySelectedEvent = $scope.allEvents[index];
     };
 
 }

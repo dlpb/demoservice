@@ -4,7 +4,7 @@ import org.joda.time.DateTime
 import com.foursquare.rogue.LiftRogue._
 import com.mongodb.WriteConcern
 
-object EventService {
+class EventService {
 
 
   def add(event: Event) = {

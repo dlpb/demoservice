@@ -11,7 +11,8 @@ import org.joda.time.format.DateTimeFormat
 /**
  * Created by Daniel on 30/12/2013.
  */
-class EventController extends Controller{
+class EventController(eventService: EventService) extends Controller{
+
 
     implicit val eventWrites = new Writes[Event] {
       def writes(e: Event): JsValue = {
@@ -26,13 +27,13 @@ class EventController extends Controller{
     }
 
   def getCurrentProjects = Action {
-     val json = Json.toJson(EventService.activeProjects)
+     val json = Json.toJson(eventService.activeProjects)
 
      Ok(json)
   }
 
   def allProjects = Action {
-    val json = Json.toJson(EventService.get)
+    val json = Json.toJson(eventService.get)
     Ok(json)
   }
 
@@ -57,9 +58,8 @@ class EventController extends Controller{
     val endTime = formatter.parseDateTime(s"""$dateEnd$timeEnd""").getMillis
 
 
-    EventService.add(Event(name, desc, startTime, endTime))
+    eventService.add(Event(name, desc, startTime, endTime))
 
-    println(EventService.get)
     Ok(s"""{"result":"success"}""")
   }
 }

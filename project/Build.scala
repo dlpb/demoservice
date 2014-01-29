@@ -28,17 +28,20 @@ object ApplicationBuild extends Build {
     "com.foursquare" %% "rogue-index" % "2.2.0" intransitive(),
     "com.foursquare" %% "rogue-core" % "2.2.0" intransitive(),
     "com.foursquare" %% "rogue-lift" % "2.2.0" intransitive(),
-    "com.foursquare" % "fongo" % "1.0.7",
-    "com.softwaremill.macwire" %% "macros" % "0.5",
-    "com.softwaremill.macwire" %% "runtime" % "0.5"
+    "com.foursquare" % "fongo" % "1.0.7"
   )
 
 
 
+
   val main = play.Project(appName, appVersion, appDependencies).settings(
-    // Add your own project settings here
-    testOptions in Test := Nil,
-    scalaVersion := "2.10.2"
+  // Add your own project settings here
+  testOptions in Test := Nil,
+  scalaVersion := "2.10.2",
+  libraryDependencies ++= Seq(
+    "com.softwaremill.macwire" %% "macros" % "0.5",
+    "com.softwaremill.macwire" %% "runtime" % "0.5"
+    )
 
   )
 

@@ -4,10 +4,7 @@ package framework
 import com.foursquare.rogue.LiftRogue._
 import com.mongodb.WriteConcern
 
-/**
- * Created by Daniel on 02/01/2014.
- */
-object VoterService {
+class VoterService {
 
 
   def vote(project: String, vote:Int) = {

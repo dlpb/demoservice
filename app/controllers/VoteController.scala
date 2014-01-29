@@ -9,7 +9,7 @@ import com.google.gson.Gson
 import play.api.libs.json.{Json, JsValue, Writes}
 
 
-class VoteController extends Controller {
+class VoteController(voterService: VoterService) extends Controller {
 
 
   val voteForm = Form(
@@ -21,12 +21,12 @@ class VoteController extends Controller {
 
   def registerVote() = Action { implicit request =>
     val (project, vote) = voteForm.bindFromRequest.get
-    VoterService.vote(project, vote)
+    voterService.vote(project, vote)
     Ok(s"""{"result":"success", "vote":"$vote"}""")
   }
 
   def getVotes(project: String) = Action {
-    val votes = VoterService.get(project).map(i => i.toString)
+    val votes = voterService.get(project).map(i => i.toString)
 
 //    val map = scala.collection.mutable.Map[Int, Int]()
 
