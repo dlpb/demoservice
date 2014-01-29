@@ -18,15 +18,15 @@ function AdminCtrl($scope, $resource, $window, times) {
     $scope.allProjs = [];
     $scope.currentlySelectedProject = $scope.projectTemplate();
 
-    $scope.allProjects = $resource('/api/v1/projects', {},
+    $scope.allProjects = $resource('/api/v1/events', {},
         { get: { method: 'GET', isArray: true } }
     );
 
-    $scope.addProject = $resource('/api/v1/projects/add', {},
+    $scope.addProject = $resource('/api/v1/events/add', {},
         { post: { method: 'POST', isArray: false } }
     );
 
-    $scope.loadProjects = function(){
+    $scope.loadEvents = function(){
 
         $scope.allProjects.get({},
             function(data){
@@ -39,7 +39,7 @@ function AdminCtrl($scope, $resource, $window, times) {
         );
     };
 
-    $scope.saveProject = function(vote) {
+    $scope.saveEvent = function(vote) {
         $scope.addProject.post(
         {
             name: $scope.currentlySelectedProject.name,
@@ -47,7 +47,8 @@ function AdminCtrl($scope, $resource, $window, times) {
             dateStart: $scope.currentlySelectedProject.dateStart,
             timeStart: $scope.currentlySelectedProject.timeStart,
             dateEnd: $scope.currentlySelectedProject.dateEnd,
-            timeEnd: $scope.currentlySelectedProject.timeEnd
+            timeEnd: $scope.currentlySelectedProject.timeEnd,
+            active: true
         },
         function (data) {
             $scope.msg = data;

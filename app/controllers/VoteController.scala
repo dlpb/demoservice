@@ -4,12 +4,12 @@ import play.api._
 import play.api.mvc._
 import play.api.data.Form
 import play.api.data.Forms._
-import framework.{ProjectService, VoterService}
+import framework.{EventService, VoterService}
 import com.google.gson.Gson
 import play.api.libs.json.{Json, JsValue, Writes}
 
 
-object VoteController extends Controller {
+class VoteController extends Controller {
 
 
   val voteForm = Form(

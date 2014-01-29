@@ -1,4 +1,4 @@
-import framework.RogueMongo
+import mongo.RogueMongo
 import play.api._
 
 object Global extends GlobalSettings {

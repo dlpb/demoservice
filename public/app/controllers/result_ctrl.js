@@ -6,7 +6,7 @@ function ResultCtrl($scope, $resource, $window) {
 
     $scope.currentProject = "";
 
-    $scope.AllResultsProjects = $resource('/api/v1/projects', {},
+    $scope.AllResultsProjects = $resource('/api/v1/events', {},
         { get: { method: 'GET', isArray: true } }
     );
     $scope.Results = $resource('/api/v1/vote/:project', {},

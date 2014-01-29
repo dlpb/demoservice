@@ -4,7 +4,7 @@ function VoteCtrl($scope, $resource, $window, $location, projectProperties, time
 
     $scope.project = "";
 
-    $scope.currentProjects = $resource('/api/v1/projects/current', {},
+    $scope.currentProjects = $resource('/api/v1/events/current', {},
         { get: { method: 'GET', isArray: true } }
     );
 

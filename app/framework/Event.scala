@@ -10,24 +10,22 @@ import net.liftweb.mongodb.record.MongoId
 /**
  * Created by Daniel on 01/01/2014.
  */
-class Project extends MongoRecord[Project] with ObjectIdPk[Project] {
-  def meta = Project
+class Event extends MongoRecord[Event] with ObjectIdPk[Event] {
+  def meta = Event
   object name extends StringField(this, Int.MaxValue)
   object description extends StringField(this, Int.MaxValue)
   object starttime extends LongField(this)
   object endtime extends LongField(this)
+  object active extends BooleanField(this)
   object owneremail extends StringField(this, Int.MaxValue)
 
 }
-object Project extends Project with MongoMetaRecord[Project] {
-  override def collectionName = "projects"
+object Event extends Event with MongoMetaRecord[Event] {
+  override def collectionName = "events"
 
   def apply(name: String, desc: String, start: Long, end: Long) = {
-    Project.createRecord.name(name).description(desc).starttime(start).endtime(end)
+    Event.createRecord.name(name).description(desc).starttime(start).endtime(end).active(true)
   }
 
-  override def toString: String = {
-     "[" + name.get + ", " + description.get + ", start= " + new java.util.Date(starttime.get) + ", end "+ new java.util.Date(endtime.get) + "]"
-  }
 }
 

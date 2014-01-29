@@ -1,4 +1,4 @@
-package framework
+package mongo
 
 import net.liftweb.mongodb.{MongoDB, MongoIdentifier}
 import com.mongodb.{ServerAddress, Mongo}
@@ -9,12 +9,12 @@ import com.mongodb.{ServerAddress, Mongo}
 
 object RogueMongo extends MongoIdentifier {
   override def jndiName = "test"
+  val mongoPort = 27017
 
   private var mongo: Option[Mongo] = None
 
   def connectToMongo = {
-    val MongoPort = 27017
-    mongo = Some(new Mongo(new ServerAddress("localhost", MongoPort)))
+    mongo = Some(new Mongo(new ServerAddress("localhost", mongoPort)))
     MongoDB.defineDb(RogueMongo, mongo.get, "voter")
   }
 

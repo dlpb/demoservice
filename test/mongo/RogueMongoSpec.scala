@@ -1,10 +1,12 @@
 package mongo
 
 import org.scalatest.{BeforeAndAfterEach, BeforeAndAfterAll, FlatSpec}
-import framework.RogueMongo
+import scala.collection.JavaConverters._
+import com.mongodb.{ServerAddress, Mongo}
 
 trait RogueMongoSpec extends FlatSpec with BeforeAndAfterAll with BeforeAndAfterEach {
 
+  lazy val mongo = new Mongo(new ServerAddress("localhost", RogueMongo.mongoPort))
 
   abstract override protected def beforeAll() {
     super.beforeAll()
@@ -15,6 +17,7 @@ trait RogueMongoSpec extends FlatSpec with BeforeAndAfterAll with BeforeAndAfter
   override protected def afterAll() {
     super.afterAll()
 
+    mongo.getDatabaseNames.asScala foreach mongo.dropDatabase
     RogueMongo.disconnectFromMongo
   }
 }

@@ -12955,7 +12955,7 @@ function $SceDelegateProvider() {
  * <pre class="prettyprint">
  *   angular.module('myAppWithSceDisabledmyApp', []).config(function($sceProvider) {
  *     // Completely disable SCE.  For demonstration purposes only!
- *     // Do not use in new projects.
+ *     // Do not use in new events.
  *     $sceProvider.enabled(false);
  *   });
  * </pre>
