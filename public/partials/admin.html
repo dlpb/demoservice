@@ -1,4 +1,11 @@
 <div ng-init="loadEvents()">
+<script type="text/javascript">
+  $(function() {
+    $('#dtpstartdiv').datetimepicker();
+    $('#dtpenddiv').datetimepicker();
+  });
+</script>
+
     <div class="body">
 
         <div class="section group">
@@ -7,7 +14,7 @@
                 <ul>
                     <li class="btn btn-default btn-block" ng-click="editEvent()">Add New Event</li>
                     <li ng-repeat="project in allEvents" class="btn btn-default btn-block"
-                        ng-click="editEvent($index)">{{project.name}}</a></li>
+                    ng-click="editEvent($index)">{{project.name}}</a></li>
                 </ul>
                 <div class="modal fade" id="editModal">
                     <div class="modal-dialog">
@@ -15,7 +22,7 @@
                             <div class="modal-header">
                                 Vote Results for {{currentProject}}
                                 <button type="button" class="close" data-dismiss="modal"
-                                        aria-hidden="true">&times;</button>
+                                aria-hidden="true">&times;</button>
                             </div>
                             <div class="modal-body">
                                 <form class="form-horizontal" role="form">
@@ -24,8 +31,8 @@
 
                                         <div class="col-sm-10">
                                             <input type="text" name="name" id="name"
-                                                   ng-model="currentlySelectedEvent.name"
-                                                   class="form-control"/>
+                                            ng-model="currentlySelectedEvent.name"
+                                            class="form-control"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -33,43 +40,34 @@
 
                                         <div class="col-sm-10">
                                             <textarea id="desc" name="desc" ng-model="currentlySelectedEvent.desc"
-                                                      class="form-control"></textarea><br/>
+                                            class="form-control"></textarea><br/>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="datestart" class="col-sm-2 control-label">Start Date</label>
 
-                                        <div class="col-sm-10">
-                                            <input type="text" name="datestart" id="datestart"
-                                                   ng-model="currentlySelectedEvent.dateStart"
-                                                   class="form-control"/></div>
-                                    </div>
                                     <div class="form-group">
-                                        <label for="timestart" class="col-sm-2 control-label">Start Time</label>
-
-                                        <div class="col-sm-10">
-                                            <input type="text" name="timestart" id="timestart"
-                                                   ng-model="currentlySelectedEvent.timeStart"
-                                                   class="form-control"/></div>
+                                        <label for="dtpstart" class="col-sm-2 control-label">Start</label>
+                                        <div id="dtpstartdiv" class="input-group date uneditable-input col-sm-10" >
+                                          <input id="dtpstart" data-format="d MMMM YYYY HH:mm" type="text" ng-model="currentlySelectedEvent.start" class="form-control" readonly/>
+                                        <span class="input-group-addon" >
+                                          <i class="glyphicon glyphicon-time" data-time-icon="glyphicon glyphicon-time" data-date-icon="glyphicon glyphicon-calendar">
+                                          </i>
+                                        </span>
+                                      </div>
                                     </div>
+
                                     <div class="form-group">
-                                        <label for="dateend" class="col-sm-2 control-label">End Date</label>
-
-                                        <div class="col-sm-10">
-                                            <input type="text" name="dateend" id="dateend"
-                                                   ng-model="currentlySelectedEvent.dateEnd"
-                                                   class="form-control"/>
-                                        </div>
+                                        <label for="dtpend" class="col-sm-2 control-label">End</label>
+                                        <div id="dtpenddiv" class="input-group date uneditable-input col-sm-10" >
+                                          <input id="dtpend" data-format="d MMMM YYYY HH:mm" type="text" class="form-control" ng-model="currentlySelectedEvent.end" readonly/>
+                                        <span class="input-group-addon">
+                                          <i class="glyphicon glyphicon-time" data-time-icon="glyphicon glyphicon-time" data-date-icon="glyphicon glyphicon-calendar">
+                                          </i>
+                                        </span>
+                                      </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="timeend" class="col-sm-2 control-label">End Time</label>
 
-                                        <div class="col-sm-10">
-                                            <input type="text" name="timeend" id="timeend"
-                                                   ng-model="currentlySelectedEvent.timeEnd"
-                                                   class="form-control"/>
-                                        </div>
-                                    </div>
+
+
                                 </form>
                             </div>
                             <div class="modal-footer">

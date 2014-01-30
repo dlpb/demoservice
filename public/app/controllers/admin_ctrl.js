@@ -7,10 +7,9 @@ function AdminCtrl($scope, $resource, $window, times) {
         return {
             name: "",
             desc : "",
-            dateStart:"",
-            dateEnd : "",
-            timeStart : "",
-            timeEnd : ""
+            start: "",
+            end: "",
+            active: true
         }
     };
 
@@ -38,14 +37,13 @@ function AdminCtrl($scope, $resource, $window, times) {
     };
 
     $scope.saveEvent = function(vote) {
+    console.log("Posting ", $scope.currentlySelectedEvent, " to server");
         $scope.AddEvent.post(
         {
             name: $scope.currentlySelectedEvent.name,
             desc: $scope.currentlySelectedEvent.desc,
-            dateStart: $scope.currentlySelectedEvent.dateStart,
-            timeStart: $scope.currentlySelectedEvent.timeStart,
-            dateEnd: $scope.currentlySelectedEvent.dateEnd,
-            timeEnd: $scope.currentlySelectedEvent.timeEnd,
+            start: $scope.currentlySelectedEvent.start,
+            end: $scope.currentlySelectedEvent.end,
             active: true
         },
         function (data) {
