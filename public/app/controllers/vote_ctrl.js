@@ -2,7 +2,7 @@
 
 function VoteCtrl($scope, $resource, $window, $location, projectProperties, times) {
 
-    $scope.project = "";
+    $scope.event = "";
 
     $scope.currentProjects = $resource('/api/v1/events/current', {},
         { get: { method: 'GET', isArray: true } }
@@ -27,8 +27,7 @@ function VoteCtrl($scope, $resource, $window, $location, projectProperties, time
     $scope.loadProjects = function(){
         $scope.currentProjects.get({},
             function(data){
-                $scope.projects = data;
-                times.add($scope.projects);
+                $scope.events = data;
             },
             function(err){
                 console.log(err);
@@ -36,7 +35,8 @@ function VoteCtrl($scope, $resource, $window, $location, projectProperties, time
     };
 
     $scope.setProject = function(project){
-        projectProperties.set("project", $scope.projects[project]);
+        console.log("project is ", project)
+        projectProperties.set("project", project);
         $location.path("/");
     };
 

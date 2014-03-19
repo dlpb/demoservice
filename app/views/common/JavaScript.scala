@@ -29,7 +29,7 @@ object JavaScript {
     "/assets/javascripts/bootstrap.js" ::
     "/assets/javascripts/Chart.js" ::
       "/assets/javascripts/moment.js" ::
-      "/assets/javascripts/bootstrap-datetimepicker.min.js" ::
+      "/assets/javascripts/bootstrap-datepicker.js" ::
       Nil map { toScriptTag }
 
   def toScriptTag(url: String) = <script src={url} type="text/javascript"></script>

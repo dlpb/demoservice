@@ -6,7 +6,7 @@
                 <h1>Select Project</h1>
                 <p>These events are active today</p>
                 <div class=btn-group-vertical">
-                    <button ng-repeat="project in events" ng-click="setProject($index)" class="btn btn-default btn-block">{{project.name}} ({{project.timeStart}} - {{project.timeEnd}})</button>
+                    <button ng-repeat="project in events" ng-click="setProject(project)" class="btn btn-default btn-block">{{project.name}}</button>
                 </div>
             </div>
         </div>

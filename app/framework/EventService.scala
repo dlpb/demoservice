@@ -20,7 +20,7 @@ class EventService {
   }
 
   def activeProjects(): List[Event] = {
-    Event.where(_.starttime gte morning).and(_.endtime lte night).and(_.active eqs true).fetch
+    Event.where(_.starttime gte morning).and(_.endtime lte night).fetch
   }
 
   def remove(project: Event) = {
@@ -40,7 +40,7 @@ class EventService {
   }
 
   def night = {
-    val dt = new DateTime().withHourOfDay(23).withMinuteOfHour(59).withSecondOfMinute(59).withMillisOfSecond(999)
+    val dt = new DateTime().plusDays(1).withHourOfDay(12).withMinuteOfHour(00).withSecondOfMinute(00).withMillisOfSecond(00)
     dt.getMillis
   }
 }

@@ -48,3 +48,7 @@ body {
 #gh-cat {
     padding: 0;
 }
+
+.datepicker {
+    z-index:9999 !important;
+}

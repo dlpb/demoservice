@@ -1,22 +1,23 @@
 <div ng-init="loadEvents()">
-<script type="text/javascript">
-  $(function() {
-    $('#dtpstartdiv').datetimepicker();
-    $('#dtpenddiv').datetimepicker();
-  });
-</script>
 
     <div class="body">
-
+        <script>
+            $('.date').datepicker();
+        </script>
         <div class="section group">
             <div class="col span_5_of_5">
                 <h1>Events</h1>
                 <ul>
-                    <li class="btn btn-default btn-block" ng-click="editEvent()">Add New Event</li>
-                    <li ng-repeat="project in allEvents" class="btn btn-default btn-block"
-                    ng-click="editEvent($index)">{{project.name}}</a></li>
+                    <li class="btn btn-default btn-block"
+                    ng-click="addEvent()">Add New Event</li>
+
+                    <li ng-repeat="project in allEvents"
+                    class="btn btn-default btn-block"
+                    ng-click="editEvent($index)">{{project.name}}</li>
                 </ul>
-                <div class="modal fade" id="editModal">
+                <!--model form-->
+                <div class="modal fade"
+                id="editModal">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -26,53 +27,84 @@
                             </div>
                             <div class="modal-body">
                                 <form class="form-horizontal" role="form">
+                                    <!--Event name-->
                                     <div class="form-group">
-                                        <label for="name" class="col-sm-2 control-label">Event Name</label>
+                                        <label for="name"
+                                        class="col-sm-2 control-label">Event Name</label>
 
                                         <div class="col-sm-10">
-                                            <input type="text" name="name" id="name"
+                                            <input type="text"
+                                            name="name"
+                                            id="name"
                                             ng-model="currentlySelectedEvent.name"
                                             class="form-control"/>
                                         </div>
                                     </div>
+                                    <!--Event description-->
                                     <div class="form-group">
-                                        <label for="desc" class="col-sm-2 control-label">Event Description</label>
+                                        <label for="desc"
+                                        class="col-sm-2 control-label">Event Description</label>
 
                                         <div class="col-sm-10">
-                                            <textarea id="desc" name="desc" ng-model="currentlySelectedEvent.desc"
+                                            <textarea id="desc"
+                                            name="desc"
+                                            ng-model="currentlySelectedEvent.desc"
                                             class="form-control"></textarea><br/>
                                         </div>
                                     </div>
-
+                                    <!--Start time-->
                                     <div class="form-group">
-                                        <label for="dtpstart" class="col-sm-2 control-label">Start</label>
-                                        <div id="dtpstartdiv" class="input-group date uneditable-input col-sm-10" >
-                                          <input id="dtpstart" data-format="d MMMM YYYY HH:mm" type="text" ng-model="currentlySelectedEvent.start" class="form-control" readonly/>
-                                        <span class="input-group-addon" >
-                                          <i class="glyphicon glyphicon-time" data-time-icon="glyphicon glyphicon-time" data-date-icon="glyphicon glyphicon-calendar">
-                                          </i>
-                                        </span>
-                                      </div>
+                                        <!--<label for="start"-->
+                                        <!--class="col-sm-2 control-label">Start</label>-->
+
+                                            <div class="col-xs-8">
+                                                <label class="col-sm-2 control-label">Effective Start Date</label>
+                                                <div class="input-group date col-sm-10"  data-date="{{currentlySelectedEvent.start}}" data-date-format="dd mm yyyy">
+                                                    <input class="form-control" type="text" readonly="" id="start" ng-model="currentlySelectedEvent.start">
+                                                    <span class="input-group-addon">
+                                                        <i class="glyphicon glyphicon-calendar"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                    </div>
+                                    <!--End time-->
+                                    <div class="form-group">
+                                            <div class="col-xs-8">
+                                                <label class="col-sm-2 control-label">Effective End Date</label>
+                                                <div class="input-group date col-sm-10"  data-date="{{currentlySelectedEvent.end}}" data-date-format="dd mm yyyy">
+                                                    <input class="form-control" type="text" readonly="" id="end" ng-model="currentlySelectedEvent.end">
+                                                    <span class="input-group-addon">
+                                                        <i class="glyphicon glyphicon-calendar"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+
                                     </div>
 
+                                    <!--Active project-->
                                     <div class="form-group">
-                                        <label for="dtpend" class="col-sm-2 control-label">End</label>
-                                        <div id="dtpenddiv" class="input-group date uneditable-input col-sm-10" >
-                                          <input id="dtpend" data-format="d MMMM YYYY HH:mm" type="text" class="form-control" ng-model="currentlySelectedEvent.end" readonly/>
-                                        <span class="input-group-addon">
-                                          <i class="glyphicon glyphicon-time" data-time-icon="glyphicon glyphicon-time" data-date-icon="glyphicon glyphicon-calendar">
-                                          </i>
-                                        </span>
-                                      </div>
-                                    </div>
+                                        <label for="active"
+                                               class="col-sm-2 control-label">Active</label>
 
+                                        <div class="input-group col-sm-10" >
+                                            <input type="checkbox"
+                                                   id="active"
+                                                   model="currentlySelectedEvent.active"
+                                                   checked="true"/>
+                                        </div>
+                                    </div>
 
 
                                 </form>
                             </div>
                             <div class="modal-footer">
-                                <div class="btn-group pull-right" ng-hide="index">
-                                    <input type="submit" value="Save" class="btn btn-default" ng-click="saveEvent()"/>
+                                <div class="btn-group pull-right"
+                                     ng-hide="index">
+                                    <input type="submit"
+                                           value="Save"
+                                           class="btn btn-default"
+                                           ng-click="saveEvent()"/>
                                 </div>
                             </div>
                         </div>

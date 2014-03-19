@@ -49,12 +49,13 @@ class EventController(eventService: EventService) extends Controller{
   )
   def addProject = Action { implicit request =>
      val x = eventForm.bindFromRequest()
+  println(request.body)
   println(x)
     val (name, desc, start, end, active) = x.get
 
-    val formatter = DateTimeFormat.forPattern("d MMMM YYYY HH:mm")
-    val startTime = formatter.parseDateTime(s"""$start""").getMillis
-    val endTime = formatter.parseDateTime(s"""$end""").getMillis
+    val formatter = DateTimeFormat.forPattern("dd MM YYYY HH:mm")
+    val startTime = formatter.parseDateTime(s"""$start 12:00""").getMillis
+    val endTime = formatter.parseDateTime(s"""$end 12:00""").getMillis
 
 
     eventService.add(Event(name, desc, startTime, endTime))

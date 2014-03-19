@@ -29,7 +29,12 @@ function AdminCtrl($scope, $resource, $window, times) {
         $scope.Events.get({},
             function(data){
                 $scope.allEvents = data;
-            },
+                $scope.allEvents.map(function(item){
+                console.log(item.start)
+                    item.start = moment(item.start).format("DD MM YYYY");
+                    item.end   = moment(item.end).format("DD MM YYYY");
+                })
+;            },
             function(err){
                 console.log(err);
             }
@@ -37,7 +42,9 @@ function AdminCtrl($scope, $resource, $window, times) {
     };
 
     $scope.saveEvent = function(vote) {
-    console.log("Posting ", $scope.currentlySelectedEvent, " to server");
+
+        $scope.currentlySelectedEvent.start = $('#start').val();
+        $scope.currentlySelectedEvent.end = $('#end').val();
         $scope.AddEvent.post(
         {
             name: $scope.currentlySelectedEvent.name,
@@ -59,10 +66,12 @@ function AdminCtrl($scope, $resource, $window, times) {
     };
 
     $scope.editEvent = function(index){
-
-        $('#editModal').modal('show');
-
         $scope.currentlySelectedEvent = $scope.allEvents[index];
+        $('#editModal').modal('show');
     };
 
+    $scope.addEvent = function(){
+      $scope.currentlySelectedEvent = $scope.eventTemplate();
+      $('#editModal').modal('show');
+    };
 }
